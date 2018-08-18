@@ -58,10 +58,10 @@ var getValidationArray = function (Validator) {
 var checkVariableErrors = function (variable, varValue, key, extra) {
   switch (key) {
     case 'alpha':
-      if (!varValue.match(/^[a-z]+$/i)) setValidationError(variable, ' is not alphabetic');
+      if (!varValue.match(/^[a-z ]+$/i)) setValidationError(variable, ' is not alphabetic');
       break;
     case 'alphanumeric':
-      if (!varValue.match(/^[a-z0-9]+$/i)) setValidationError(variable, ' is not alphanumeric');
+      if (!varValue.match(/^[a-z 0-9]+$/i)) setValidationError(variable, ' is not alphanumeric');
       break;
     case 'uppercase':
       if (!varValue.match(/^[A-Z]+$/)) setValidationError(variable, ' is not uppercase');
@@ -80,7 +80,7 @@ var checkVariableErrors = function (variable, varValue, key, extra) {
       if (!dataType.isEmail(varValue)) setValidationError(variable, ' is not email');
       break;
     case 'in':
-      if (!extra.indexOf(varValue)) setValidationError(variable, "'s is invalid");
+      if (extra.indexOf(varValue) < 0) setValidationError(variable, "'s is invalid");
       break;
     case 'date':
       if (!dataType.isDate(varValue)) setValidationError(variable, ' is not date');
