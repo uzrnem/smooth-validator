@@ -1,0 +1,11 @@
+{
+  "name": "gisue",
+  "version": "1.0.1",
+  "description": "Validator for javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bhagyesh Sunil Patel",
+  "license": "ISC"
+}
