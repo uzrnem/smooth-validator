@@ -34,10 +34,10 @@ console.log("dataType.isBoolean(false) : " + dataType.isBoolean(false)); // true
 console.log("dataType.isEmail('uzrnem@gmail.com') : " + dataType.isEmail('uzrnem@gmail.com')); // true
 ```
 
-Validator to data
+Validate the data
 
 ```sh
-validators = {
+rules = {
   'id' : 'numeric',
   'name' : 'alpha|alphanumeric|max:20',
   'nice_name' : 'nullable|uppercase|lowercase',
@@ -57,7 +57,7 @@ data = {
   created_at : '2018-09-10'
 }
 
-console.log(validator(data, validators))
+console.log(validator(data, rules))
 { success: false,
   message: 'id is not number',
   errors:
@@ -73,11 +73,11 @@ console.log(validator(data, validators))
      { key: 'address', message: 'address is required' },
      { key: 'created_at', message: 'created_at is not date' } ] }
 ```
-here `data` is Actual Data and `validators` is validation rules on data.
+here `data` is Actual Data and `rules` is validation rules on data.
 if u want errors in key pair value, pass third parameter `Type` as true (*some errors may overwrite)
 
 ```sh
-console.log(validator(data, validators, true))
+console.log(validator(data, rules, true))
 { success: false,
   message: 'id is not number',
   errors:
@@ -88,4 +88,8 @@ console.log(validator(data, validators, true))
      estado: 'estado\'s is invalid',
      address: 'address is required',
      created_at: 'created_at is not date' ] }
+```
+If all is right, output will be
+```sh
+{ success: true, message: '', errors: [] }
 ```
