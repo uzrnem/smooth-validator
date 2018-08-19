@@ -1,22 +1,5 @@
 var dataType = require('./dataType');
 
-var error = false;
-var msg = '';
-var errors = [];
-var keyValuePair = false;
-
-var setValidationError = function (key, string) {
-  if (!error) {
-    error = true;
-    msg = key + string;
-  }
-  if (keyValuePair) {
-    errors[key] = key + string;
-  } else {
-    errors.push({key : key, message : key + string});
-  }
-}
-
 var getAllowedArrayIn = function (variable) {
   if (variable.indexOf(',') > -1) {
     var arr = variable.split(',');
@@ -58,44 +41,60 @@ var getValidationArray = function (Validator) {
 var checkVariableErrors = function (variable, varValue, key, extra) {
   switch (key) {
     case 'alpha':
-      if (!varValue.match(/^[a-z ]+$/i)) setValidationError(variable, ' is not alphabetic');
+      if (!varValue.match(/^[a-z ]+$/i))
+        return { resKey: variable, resMsg : ' is not alphabetic' };
       break;
     case 'alphanumeric':
-      if (!varValue.match(/^[a-z 0-9]+$/i)) setValidationError(variable, ' is not alphanumeric');
+      if (!varValue.match(/^[a-z 0-9]+$/i))
+        return { resKey: variable, resMsg : ' is not alphanumeric'};
       break;
     case 'uppercase':
-      if (!varValue.match(/^[A-Z]+$/)) setValidationError(variable, ' is not uppercase');
+      if (!varValue.match(/^[A-Z]+$/))
+        return { resKey: variable, resMsg : ' is not uppercase'};
       break;
     case 'lowercase':
-      if (!varValue.match(/^[a-z]+$/)) setValidationError(variable, ' is not lowercase');
+      if (!varValue.match(/^[a-z]+$/))
+        return { resKey: variable, resMsg : ' is not lowercase'};
       break;
     case 'required': break;
     case 'min':
-      if (varValue.length < extra) setValidationError(variable, "'s length is less than " + extra);
+      if (varValue.length < extra)
+        return { resKey: variable, resMsg : "'s length is less than " + extra};
       break;
     case 'max':
-      if (varValue.length > extra) setValidationError(variable, "'s length is greater than " + extra);
+      if (varValue.length > extra)
+        return { resKey: variable, resMsg : "'s length is greater than " + extra};
       break;
     case 'email':
-      if (!dataType.isEmail(varValue)) setValidationError(variable, ' is not email');
+      if (!dataType.isEmail(varValue))
+        return { resKey: variable, resMsg : ' is invalid'};
       break;
     case 'in':
-      if (extra.indexOf(varValue) < 0) setValidationError(variable, "'s is invalid");
+      if (extra.indexOf(varValue) < 0)
+        return { resKey: variable, resMsg : " is invalid"};
       break;
     case 'date':
-      if (!dataType.isDate(varValue)) setValidationError(variable, ' is not date');
+      if (!dataType.isDate(varValue))
+        return { resKey: variable, resMsg : ' is not date'};
       break;
     case 'numeric':
-      if (!dataType.isNumber(varValue)) setValidationError(variable, ' is not number');
+      if (!dataType.isNumber(varValue))
+        return { resKey: variable, resMsg : ' is not number'};
       break;
     case 'nullable': break;
     default :
-      setValidationError(key, ' is invalid validator on ' + variable);
+      return { resKey: variable, resMsg : ' is invalid validator on ' + variable};
       break;
   }
+  return { resKey: false, resMsg : null};
 }
 
 module.exports = function (data, Validator, type) {
+  var error = false;
+  var msg = '';
+  var errors = [];
+  var keyValuePair = false;
+
   var validation = getValidationArray(Validator);
   keyValuePair = type !== undefined && type;
 
@@ -104,7 +103,13 @@ module.exports = function (data, Validator, type) {
     var required = conditions.indexOf('required') > -1;
     var varValue = data[variable];
     if (required && !varValue && dataType.isEmpty(varValue)) {
-      setValidationError(variable, ' is required');
+      if (error) {
+        errors.push({key : variable, message : variable + ' is required'});
+      } else {
+        error = true;
+        msg = variable + ' is required';
+        errors.push({key : variable, message : msg});
+      }
       continue;
     }
     var varCondition = validation[variable];
@@ -112,7 +117,16 @@ module.exports = function (data, Validator, type) {
       var key = varCondition[i]['keys'];
       var extra = varCondition[i]['value'];
       if (!dataType.isEmpty(varValue) || !nullable) {
-        checkVariableErrors(variable, varValue, key, extra);
+        var {resKey, resMsg} = checkVariableErrors(variable, varValue, key, extra);
+        if (resKey && resMsg) {
+            if (error) {
+              errors.push({key : resKey, message : resKey + resMsg});
+            } else {
+              error = true;
+              msg = resKey + resMsg;
+              errors.push({key : resKey, message : msg});
+            }
+        }
       }
     }
   }
