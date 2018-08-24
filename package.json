@@ -1,11 +1,55 @@
 {
-  "name": "gisue",
-  "version": "1.0.1",
+  "_from": "smooth-validator",
+  "_id": "smooth-validator@1.0.3",
+  "_inBundle": false,
+  "_integrity": "sha512-p2iR9SFL5vp5D/b/igaByuWykcqrwUc5Xj3ouk7/VrgxjQdm6plpYs8SRjOYCIMnsaNvyTbMwAa9DOOwcxKiBg==",
+  "_location": "/smooth-validator",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "smooth-validator",
+    "name": "smooth-validator",
+    "escapedName": "smooth-validator",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/smooth-validator/-/smooth-validator-1.0.3.tgz",
+  "_shasum": "957a871e74ba92f38b2e1f0508354a0a28271d87",
+  "_spec": "smooth-validator",
+  "_where": "/var/www",
+  "author": {
+    "name": "Bhagyesh Sunil Patel"
+  },
+  "bugs": {
+    "url": "https://github.com/uzrnem/smooth-validator/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "Validator for javascript",
+  "homepage": "https://github.com/uzrnem/smooth-validator#readme",
+  "keywords": [
+    "frontend",
+    "backend",
+    "validation",
+    "validator",
+    "check",
+    "data_type"
+  ],
+  "license": "",
   "main": "index.js",
+  "name": "smooth-validator",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uzrnem/smooth-validator.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Bhagyesh Sunil Patel",
-  "license": "ISC"
+  "version": "1.0.4"
 }

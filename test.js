@@ -20,3 +20,5 @@ data = {
 }
 
 console.log(validator(data, validators))
+//'year_started' : 'date_format:Y'
+//alpha_dash and other

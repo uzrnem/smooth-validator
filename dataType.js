@@ -40,5 +40,10 @@ module.exports = {
   },
   isDate : function (value) {
     return value instanceof Date;
+  },
+  isJson : function (value) {
+    return (/^[\],:{}\s]*$/.test(value.replace(/\\["\\\/bfnrtu]/g, '@').
+    replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+    replace(/(?:^|:|,)(?:\s*\[)+/g, '')))
   }
 }

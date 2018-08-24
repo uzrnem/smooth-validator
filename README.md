@@ -6,6 +6,7 @@ import packages (es6)
 import { dataType } from 'gisue';
 import { validator } from 'gisue';
 ```
+
 or
 
 ```sh
@@ -22,7 +23,7 @@ if (dataType.isEmpty(str)) {
 } else {
   console.log('str is not Empty');
 }
-console.log('dataType.isString("str is not Empty") : ' + dataType.isString("str is not Empty")); // true
+console.log('dataType.isString("string") : ' + dataType.isString("string")); // true
 console.log("dataType.isNumber([]) : " + dataType.isNumber([])); // false
 console.log("dataType.isArray([]) : " + dataType.isArray([])); // true
 console.log('dataType.isFunction(() => {}) : ' + dataType.isFunction(() => {})); // true
@@ -47,6 +48,7 @@ rules = {
   'address' : 'required',
   'created_at' : 'required|date'
 }
+
 data = {
   id : '23l',
   name : 'Er. Bhagyesh Sunil Patel',
@@ -58,6 +60,7 @@ data = {
 }
 
 console.log(validator(data, rules))
+
 { success: false,
   message: 'id is not number',
   errors:
@@ -73,11 +76,13 @@ console.log(validator(data, rules))
      { key: 'address', message: 'address is required' },
      { key: 'created_at', message: 'created_at is not date' } ] }
 ```
+
 here `data` is Actual Data and `rules` is validation rules on data.
 if u want errors in key pair value, pass third parameter `Type` as true (*some errors may overwrite)
 
 ```sh
 console.log(validator(data, rules, true))
+
 { success: false,
   message: 'id is not number',
   errors:
@@ -89,7 +94,17 @@ console.log(validator(data, rules, true))
      address: 'address is required',
      created_at: 'created_at is not date' ] }
 ```
+
 If all is right, output will be
+
 ```sh
 { success: true, message: '', errors: [] }
 ```
+
+Core Team
+
+* [Bhagyesh Sunil Patel]
+
+[//]: # (These are reference links used in the body of this note)
+
+   [Bhagyesh Sunil Patel]: <https://github.com/uzrnem>
