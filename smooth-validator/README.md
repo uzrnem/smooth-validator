@@ -89,7 +89,7 @@ console.log(validator(data, rules, true))
    [ id: 'id is not number',
      name: 'name\'s length is greater than 20',
      nice_name: 'nice_name is not lowercase',
-     email: 'email is not email',
+     email: 'email is not valid',
      estado: 'estado\'s is invalid',
      address: 'address is required',
      created_at: 'created_at is not date' ] }
@@ -98,7 +98,7 @@ console.log(validator(data, rules, true))
 If all is right, output will be
 
 ```sh
-{ success: true, message: '', errors: [] }
+{ success: true }
 ```
 
 Core Team
