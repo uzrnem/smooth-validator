@@ -1,4 +1,4 @@
-var {validator} = require('./index');
+var {validator} = require('./smooth-validator/index');
 validators = {
   'id' : 'numeric',
   'name' : 'alpha|alphanumeric|max:20',
@@ -20,5 +20,3 @@ data = {
 }
 
 console.log(validator(data, validators))
-//'year_started' : 'date_format:Y'
-//alpha_dash and other

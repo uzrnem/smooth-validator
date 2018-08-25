@@ -117,7 +117,7 @@ module.exports = function (data, Validator, type) {
       var key = varCondition[i]['keys'];
       var extra = varCondition[i]['value'];
       if (!dataType.isEmpty(varValue) || !nullable) {
-        var {resKey, resMsg} = checkVariableErrors(variable, varValue, key, extra);
+        var {resKey, resMsg} = checkVariableErrors(variable, varValue, key, extra, keyValuePair);
         if (resKey && resMsg) {
             if (error) {
               errors.push({key : resKey, message : resKey + resMsg});
