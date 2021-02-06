@@ -1,16 +1,11 @@
 # Use Various Validator in Javascript
 
 import packages (es6)
+Code can be found in node_moduels/smooth-validator
 
 ```sh
-import { dataType } from 'gisue';
-import { validator } from 'gisue';
-```
-
-or
-
-```sh
-var gisue = require('gisue');
+import { dataType } from 'smooth-validator';
+import { verify } from 'smooth-validator';
 ```
 
 Validator to check data Type
@@ -23,10 +18,9 @@ if (dataType.isEmpty(str)) {
 } else {
   console.log('str is not Empty');
 }
-console.log('dataType.isString("string") : ' + dataType.isString("string")); // true
-console.log("dataType.isNumber([]) : " + dataType.isNumber([])); // false
-console.log("dataType.isArray([]) : " + dataType.isArray([])); // true
-console.log('dataType.isFunction(() => {}) : ' + dataType.isFunction(() => {})); // true
+console.log('dataType.isString("string") : ' + dataType.isString("string")); //true
+console.log("dataType.isNumber([]) : " + dataType.isNumber([])); //false
+console.log("dataType.isArray([]) : " + dataType.isArray([])); //true
 console.log("dataType.isObject(null) : " + dataType.isObject(null)); // null
 console.log("dataType.isNull(212) : " + dataType.isNull(212)); // false
 console.log("dataType.isUndefined(90) : " + dataType.isUndefined(90)); // false
@@ -59,7 +53,7 @@ data = {
   created_at : '2018-09-10'
 }
 
-console.log(validator(data, rules))
+console.log(verify(data, rules))
 
 { success: false,
   message: 'id is not number',
@@ -67,30 +61,29 @@ console.log(validator(data, rules))
    [ { key: 'id', message: 'id is not number' },
      { key: 'name', message: 'name is not alphabetic' },
      { key: 'name', message: 'name is not alphanumeric' },
-     { key: 'name', message: 'name\'s length is greater than 20' },
+     { key: 'name', message: "name's length is greater than 20" },
      { key: 'nice_name', message: 'nice_name is not uppercase' },
      { key: 'nice_name', message: 'nice_name is not lowercase' },
-     { key: 'email', message: 'email\'s length is less than 5' },
+     { key: 'email', message: "email\'s length is less than 5" },
      { key: 'email', message: 'email is not valid' },
-     { key: 'estado', message: 'estado\'s is invalid' },
+     { key: 'estado', message: "estado\'s is invalid" },
      { key: 'address', message: 'address is required' },
      { key: 'created_at', message: 'created_at is not date' } ] }
 ```
-
 here `data` is Actual Data and `rules` is validation rules on data.
 if u want errors in key pair value, pass third parameter `Type` as true (*some errors may overwrite)
 
 ```sh
-console.log(validator(data, rules, true))
+console.log(verify(data, rules, true))
 
 { success: false,
   message: 'id is not number',
   errors:
    [ id: 'id is not number',
-     name: 'name\'s length is greater than 20',
+     name: "name\'s length is greater than 20",
      nice_name: 'nice_name is not lowercase',
      email: 'email is not valid',
-     estado: 'estado\'s is invalid',
+     estado: "estado\'s is invalid",
      address: 'address is required',
      created_at: 'created_at is not date' ] }
 ```
