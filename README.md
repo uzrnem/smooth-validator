@@ -1,7 +1,8 @@
 # Use Various Validator in Javascript
 
-import packages (es6)
 Code can be found in node_moduels/smooth-validator
+
+import packages (es6)
 
 ```sh
 import { dataType } from 'smooth-validator';
