@@ -1,0 +1,12 @@
+#docker-compose up -d
+version: '3.7'
+
+services:
+  smooth-validator:
+    image: node:16-alpine3.14
+    container_name: validator
+    working_dir: /app
+    volumes:
+      # update path as per your directory structure
+      - $HOME/uzrnem/smooth-validator:/app
+    command: tail -f /dev/null
