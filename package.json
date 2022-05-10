@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "smooth-validator": "^1.2.0"
+    "smooth-validator": "^3.0.0"
   }
 }
