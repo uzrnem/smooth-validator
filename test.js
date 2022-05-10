@@ -1,4 +1,9 @@
-const parser = require('./smooth');
+//'year_started' : 'date_format:Y'
+//alpha_dash and other
+//json
+
+
+const parser = require('smooth-validator');
 
 completed = {
   id: 'numeric|between:-24,30',
