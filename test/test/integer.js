@@ -45,7 +45,7 @@ describe('integer', function () {
         parser({ id: 'between:10' })
       }
       catch(err) {
-        assert.equal(err, "Invalid validation 'between', min and mix params are required")
+        assert.equal(err, "Invalid validation 'between', two params are required")
       }
     })
     it('extra arguments', function () {
@@ -53,7 +53,7 @@ describe('integer', function () {
         parser({ id: 'between:-20,0,20' })
       }
       catch(err) {
-        assert.equal(err, "Invalid validation 'between', only min and mix params are allowed")
+        assert.equal(err, "Invalid validation 'between', only two params are allowed")
       }
     })
   })
@@ -194,6 +194,56 @@ describe('integer', function () {
       }
       catch(err) {
         assert.equal(err, "Invalid validation 'lte', only one value param is allowed")
+      }
+    })
+  })
+
+  describe('odd', function () {
+    it('pass', function () {
+      var validate = parser({ id: 'odd' })
+      var res = validate({ id : 9 });
+      assert.equal( res.message, "validation passed")
+      var res = validate({ id : "21" });
+      assert.equal( res.message, "validation passed")
+    })
+    it('fail', function () {
+      var validate = parser({ id: 'odd' })
+      var res = validate({ id : 9.1 });
+      assert.equal( res.message, "id is not odd number")
+      var res = validate({ id : 30 });
+      assert.equal( res.message, "id is not odd number")
+    })
+    it('extra arguments', function () {
+      try {
+        parser({ id: 'odd:-20' })
+      }
+      catch(err) {
+        assert.equal(err, "Invalid validation 'odd', no extra params required")
+      }
+    })
+  })
+
+  describe('even', function () {
+    it('pass', function () {
+      var validate = parser({ id: 'even' })
+      var res = validate({ id : 8 });
+      assert.equal( res.message, "validation passed")
+      var res = validate({ id : "20" });
+      assert.equal( res.message, "validation passed")
+    })
+    it('fail', function () {
+      var validate = parser({ id: 'even' })
+      var res = validate({ id : 8.1 });
+      assert.equal( res.message, "id is not even number")
+      var res = validate({ id : 31 });
+      assert.equal( res.message, "id is not even number")
+    })
+    it('extra arguments', function () {
+      try {
+        parser({ id: 'even:-20' })
+      }
+      catch(err) {
+        assert.equal(err, "Invalid validation 'even', no extra params required")
       }
     })
   })

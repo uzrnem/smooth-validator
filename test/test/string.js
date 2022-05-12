@@ -295,6 +295,27 @@ describe('string', function () {
     })
   })
 
+  describe('starts_not_with', function () {
+    it('pass', function () {
+      var validate = parser({ status: 'starts_not_with:inactive,delete' })
+      var res = validate({ status : 'active' });
+      assert.equal( res.message, "validation passed")
+    })
+    it('fail', function () {
+      var validate = parser({ status: 'starts_not_with:inactive,delete' })
+      var res = validate({ status : 'delete' });
+      assert.equal( res.message, "status does starts with delete")
+    })
+    it('insuffient arguments', function () {
+      try {
+        parser({ id: 'starts_not_with' })
+      }
+      catch(err) {
+        assert.equal(err, "Invalid validation 'starts_not_with', value param is required")
+      }
+    })
+  })
+
   describe('ends_with', function () {
     it('pass', function () {
       var validate = parser({ status: 'ends_with:inactive,delete' })
@@ -312,6 +333,69 @@ describe('string', function () {
       }
       catch(err) {
         assert.equal(err, "Invalid validation 'ends_with', value param is required")
+      }
+    })
+  })
+
+  describe('ends_not_with', function () {
+    it('pass', function () {
+      var validate = parser({ status: 'ends_not_with:inactive,delete' })
+      var res = validate({ status : 'status-active' });
+      assert.equal( res.message, "validation passed")
+    })
+    it('fail', function () {
+      var validate = parser({ status: 'ends_not_with:inactive,delete' })
+      var res = validate({ status : 'isdelete' });
+      assert.equal( res.message, "status does ends with 'delete'")
+    })
+    it('insuffient arguments', function () {
+      try {
+        parser({ id: 'ends_not_with' })
+      }
+      catch(err) {
+        assert.equal(err, "Invalid validation 'ends_not_with', value param is required")
+      }
+    })
+  })
+
+  describe('contains', function () {
+    it('pass', function () {
+      var validate = parser({ status: 'contains:in,not' })
+      var res = validate({ status : 'inot' });
+      assert.equal( res.message, "validation passed")
+    })
+    it('fail', function () {
+      var validate = parser({ status: 'contains:in,not' })
+      var res = validate({ status : 'nothng' });
+      assert.equal( res.message, "status does not contains 'in'")
+    })
+    it('insuffient arguments', function () {
+      try {
+        parser({ id: 'contains' })
+      }
+      catch(err) {
+        assert.equal(err, "Invalid validation 'contains', value param is required")
+      }
+    })
+  })
+
+  describe('contains_any', function () {
+    it('pass', function () {
+      var validate = parser({ status: 'contains_any:in,not' })
+      var res = validate({ status : 'note' });
+      assert.equal( res.message, "validation passed")
+    })
+    it('fail', function () {
+      var validate = parser({ status: 'contains_any:in,not' })
+      var res = validate({ status : 'betweenvalue' });
+      assert.equal( res.message, "status does not contains any of in,not")
+    })
+    it('insuffient arguments', function () {
+      try {
+        parser({ id: 'contains_any' })
+      }
+      catch(err) {
+        assert.equal(err, "Invalid validation 'contains_any', value param is required")
       }
     })
   })

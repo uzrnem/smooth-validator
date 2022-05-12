@@ -31,24 +31,23 @@ var res = validate(data1);
 console.log(res)
 
 /*
-const currentMonth = new Date();
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-console.log(months[currentMonth.getMonth()]);
-new Date().toDateString();
-YYYY-MM-DDTHH:MM:SSZ
-let completeDate = new Date("2021-01-01");
-let yearMonth = new Date("2021-01");
-let yearOnly = new Date("2021");
-let dateTimeUTC = new Date("2021-01-01T12:00:00Z");
-let dateTimeEST = new Date("2021-01-01T12:00:00-04:00");
 
-let longDate1 = new Date("Jan 01 2021");
-let longDates = new Date("01 Jan 2021");
-let longDate3 = new Date("January 01 2021");
-let longDate4 = new Date("JAN 01, 2021");
 
-date, 
-after:yesterday,after:2021-01-01,after_or_equals:today
-before:tomorrow,before_or_equals:due_date
-custom delimeters
+
+[
+    ‘password’ => ‘required|min:8|max:255’
+], [
+    ‘password.required’ => ‘The password field is required.’,
+    ‘password.min’ => ‘The password must have at list 8 characters.’,
+    ‘password.max’ => ‘The password cannot exceed 255 characters.’,
+]
+$messages = [
+    'same' => 'The :attribute and :other must match.',
+    'size' => 'The :attribute must be exactly :size.',
+    'between' => 'The :attribute value :input is not between :min - :max.',
+    'in' => 'The :attribute must be one of the following types: :values',
+];[
+    'credit_card_number' => 'required_if:payment_type,cc'
+]
+
 */

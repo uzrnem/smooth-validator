@@ -23,6 +23,39 @@ describe('general', function () {
     })
   })
 
+  describe('required_if', function () {
+    it('pass', function () {
+      var validate = parser({ due_date: 'required_if:status,active' })
+      var res = validate({ due_date: null });
+      assert.equal( res.message, "validation passed")
+      var res = validate({ due_date: null, status: 'inactive' });
+      assert.equal( res.message, "validation passed")
+      var res = validate({ due_date: new Date(), status: 'active' })
+      assert.equal( res.message, "validation passed")
+    })
+    it('fail', function () {
+      var validate = parser({ due_date: 'required_if:status,active' })
+      var res = validate({ due_date: null, status: 'active' })
+      assert.equal( res.message, "due_date is required")
+    })
+    it('insuffient arguments', function () {
+      try {
+        parser({ id: 'required_if:10' })
+      }
+      catch(err) {
+        assert.equal(err, "Invalid validation 'required_if', two params are required")
+      }
+    })
+    it('extra arguments', function () {
+      try {
+        parser({ id: 'required_if:-20,0,20' })
+      }
+      catch(err) {
+        assert.equal(err, "Invalid validation 'required_if', only two params are allowed")
+      }
+    })
+  })
+
   describe('same', function () {
     it('pass', function () {
       var validate = parser({ id: 'same:marks' })
