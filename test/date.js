@@ -1,12 +1,18 @@
 const parser = require('smooth-validator');
 
 completed = {
-  created_at: 'before:tomorrow',
+  created_at: 'after:tomorrow',
   updated_at: 'before_or_equals:created_at',
   sold_at: 'after_or_equals:2022-05-15',
 }
 
-var validate = parser(completed)
+var validate = parser(completed, {
+  date_format: 'YY-MM-DD',
+  transalation: {
+    'created_at.after' : ':variable validation failed',
+    'sold_at.after_or_equals' : ':value comes before :firstValue',
+  }
+})
 data1 = {
   created_at : new Date(),
   updated_at: new Date(),

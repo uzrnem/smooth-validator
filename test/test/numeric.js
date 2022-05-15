@@ -1,26 +1,24 @@
 const parser = require('smooth-validator');
 const assert = require('chai').assert;
 
-describe('integer', function () {
-  describe('numeric', function () {
-    it('pass', function () {
-      var validate = parser({ id: 'numeric' })
-      var res = validate({ id : '-24.6778' });
-      assert.equal( res.message, "validation passed")
-    })
-    it('fail', function () {
-      var validate = parser({ id: 'numeric' })
-      var res = validate({ id : '-24. 6778'});
-      assert.equal( res.message, "id is not number")
-    })
-    it('extra arguments', function () {
-      try {
-        parser({ id: 'numeric:-220' })
-      }
-      catch(err) {
-        assert.equal(err, "Invalid validation 'numeric', no extra params required")
-      }
-    })
+describe('numeric', function () {
+  it('pass', function () {
+    var validate = parser({ id: 'numeric' })
+    var res = validate({ id : '-24.6778' });
+    assert.equal( res.message, "validation passed")
+  })
+  it('fail', function () {
+    var validate = parser({ id: 'numeric' })
+    var res = validate({ id : '-24. 6778'});
+    assert.equal( res.message, "id is not number")
+  })
+  it('extra arguments', function () {
+    try {
+      parser({ id: 'numeric:-220' })
+    }
+    catch(err) {
+      assert.equal(err, "Invalid validation 'numeric', no extra params required")
+    }
   })
 
   describe('between', function () {

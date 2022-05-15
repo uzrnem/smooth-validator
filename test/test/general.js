@@ -67,7 +67,7 @@ describe('general', function () {
       var res = validate({ id : 20, marks: 23 });
       assert.equal( res.message, "id is not equal to marks")
       var res = validate({ id : 25 });
-      assert.equal( res.message, "id can not match, marks is missing from input")
+      assert.equal( res.message, "id is not equal to marks")
     })
     it('insuffient arguments', function () {
       try {
