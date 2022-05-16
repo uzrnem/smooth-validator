@@ -1,20 +1,20 @@
 const parser = require('smooth-validator');
 const assert = require('chai').assert;
 
-describe('translation', function () {
-  it('created_at', function () {
+describe('message', function () {
+  it('custom_message', function () {
     var validate = parser({ created_at: 'after:tomorrow' }, {
-      transalation: {
+      message: {
         'created_at.after' : ':variable validation failed'
       }
     })
     var res = validate({ created_at : new Date() });
     assert.equal( res.message, "created_at validation failed")
   })
-  it('sold_at', function () {
+  it('custom_message_with_params', function () {
     var validate = parser({ sold_at: 'after_or_equals:2022-05-15' }, {
-      transalation: {
-        'sold_at.after_or_equals' : ':value comes before :firstValue',
+      message: {
+        'sold_at.after_or_equals' : ':value comes before :first_value',
       }
     })
     var res = validate({sold_at: '2022-05-14'});
