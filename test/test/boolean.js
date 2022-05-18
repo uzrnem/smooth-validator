@@ -6,6 +6,10 @@ describe('boolean', function () {
     var validate = parser({ id: 'boolean' })
     var res = validate({ id : 'false' });
     assert.equal( res.message, "validation passed")
+
+    var validate = parser({ id: 'boolean' })
+    var res = validate({ id : '0' });
+    assert.equal( res.message, "validation passed")
   })
   it('fail', function () {
     var validate = parser({ id: 'boolean' })

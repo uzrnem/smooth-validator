@@ -1,5 +1,37 @@
 {
+  "name": "smooth-validator",
+  "version": "4.0.1",
+  "description": "Validator for javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test --prefix test"
+  },
+  "keywords": [
+    "frontend",
+    "backend",
+    "express",
+    "node",
+    "validation",
+    "validator",
+    "validate",
+    "check",
+    "data_type",
+    "sanitize",
+    "sanitization",
+    "json",
+    "parse",
+    "parser",
+    "input validation",
+    "data validator",
+    "email",
+    "date",
+    "array",
+    "object"
+  ],
+  "author": "Bhagyesh Patel",
+  "homepage": "https://uzrnem.github.io/smooth-validator",
+  "repository": "https://github.com/uzrnem/smooth-validator",
   "dependencies": {
-    "smooth-validator": "^4.0.0"
+    "smooth-validator": "^4.0.1"
   }
 }
