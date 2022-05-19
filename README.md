@@ -1,6 +1,10 @@
 # Smooth-Validator for Javascript
+
+[![smooth-validator](https://img.shields.io/badge/validator-plain_javascript-green)](https://github.com/uzrnem/smooth-validator)
 [![npm version](https://img.shields.io/npm/v/smooth-validator.svg)](https://www.npmjs.com/package/smooth-validator)
-[![Bundle Size](https://badgen.net/bundlephobia/minzip/smooth-validator)](https://bundlephobia.com/result?p=smooth-validator)
+[![Bundle Zip Size](https://img.shields.io/bundlephobia/minzip/smooth-validator)](https://www.npmjs.com/package/smooth-validator)
+[![Bundle Size](https://img.shields.io/bundlephobia/min/smooth-validator)](https://www.npmjs.com/package/smooth-validator)
+
 
 ## Getting Started
 
